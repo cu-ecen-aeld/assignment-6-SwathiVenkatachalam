@@ -11,7 +11,6 @@
 # Reference: [1] meta-aesd/recipes-aesd-assignments/aesd-assignments/aesd-assignment_git.bb
 LICENSE = "MIT"
 #LIC_FILES_CHKSUM = "file://LICENSE;md5=f098732a73b5f6f3430472f5b094ffdb"
-# Added from [1]
 LIC_FILES_CHKSUM = "file://${COMMON_LICENSE_DIR}/MIT;md5=0835ade698e0bcf8506ecda2f7b4f302"
 
 #SRC_URI = "git://git@github.com/cu-ecen-aeld/assignment-7-SwathiVenkatachalam.git;protocol=ssh;branch=master"
@@ -27,14 +26,10 @@ S = "${WORKDIR}/git/misc-modules"
 
 inherit module
 
-# Added
-MODULES_INSTALL_TARGET = "install"
-
 # Modify the task-install in the .bb file to use the correct module folder for the M argument.  
 # You can do this with an EXTRA_OEMAKE_append_task-install = " -C ${STAGING_KERNEL_DIR} M=${S}/scull"
-# EXTRA_OEMAKE:append:task-install = " -C ${STAGING_KERNEL_DIR} M=${S}"
 # Updated for misc-modules
-EXTRA_OEMAKE:append_task-install = " -C ${STAGING_KERNEL_DIR} M=${S}/misc-modules"
+EXTRA_OEMAKE:append:task-install = " -C ${STAGING_KERNEL_DIR} M=${S}/misc-modules"
 EXTRA_OEMAKE += "KERNELDIR=${STAGING_KERNEL_DIR}"
 
 # Added from [1]
@@ -43,9 +38,6 @@ EXTRA_OEMAKE += "KERNELDIR=${STAGING_KERNEL_DIR}"
 # FILES:${PN} += "${bindir}/aesdsocket"
 # FILES:${PN} += "${bindir}/aesdsocket-start-stop.sh"
 
-# Updated for modules
-FILES:${PN} += "${bindir}/module_load"
-FILES:${PN} += "${bindir}/module_unload"
 FILES:${PN} += "${sysconfdir}/*"
 
 # TODO: customize these as necessary for any libraries you need for your application
@@ -76,12 +68,6 @@ do_install () {
 	# and
 	# https://docs.yoctoproject.org/ref-manual/variables.html?highlight=workdir#term-S
 	# See example at https://github.com/cu-ecen-aeld/ecen5013-yocto/blob/ecen5013-hello-world/meta-ecen5013/recipes-ecen5013/ecen5013-hello-world/ecen5013-hello-world_git.bb
-	install -d ${D}${bindir}
-
-	# install -m 0755 ${S}/aesdsocket ${D}${bindir}/
-        # Added instead of aesdsocket
-        install -m 0755 ${S}/module_load ${D}${bindir}/
-        install -m 0755 ${S}/module_unload ${D}${bindir}/
 
 	install -d ${D}${sysconfdir}/init.d
 
