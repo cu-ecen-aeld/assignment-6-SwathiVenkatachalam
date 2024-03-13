@@ -16,7 +16,7 @@ LIC_FILES_CHKSUM = "file://${COMMON_LICENSE_DIR}/MIT;md5=0835ade698e0bcf8506ecda
 
 #SRC_URI = "git://git@github.com/cu-ecen-aeld/assignment-7-SwathiVenkatachalam.git;protocol=ssh;branch=master"
 # Added file init-scull.sh
-SRC_URI = "git://git@github.com/cu-ecen-aeld/assignment-7-SwathiVenkatachalam.git;protocol=ssh;branch=master"
+SRC_URI = "git://git@github.com/cu-ecen-aeld/assignment-7-SwathiVenkatachalam.git;protocol=ssh;branch=master file://init-scull.sh"
 
 # Modify these as desired
 PV = "1.0+git${SRCPV}"
