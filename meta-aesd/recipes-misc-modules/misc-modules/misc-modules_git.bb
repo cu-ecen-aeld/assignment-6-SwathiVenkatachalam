@@ -87,9 +87,9 @@ do_install () {
 
 	# install -m 0755 ${S}/aesdsocket-start-stop.sh ${D}${sysconfdir}/init.d
         # Added init-misc modules script and .ko modules
-        install -d ${D}${base_libdir}/modules/5.15.91-yocto-standard/
+        install -d ${D}${base_libdir}/modules/5.15.148-yocto-standard/
 
 	install -m 0755 ${WORKDIR}/init-misc-modules.sh ${D}${sysconfdir}/init.d
-        install -m 0755 ${S}/hello.ko ${D}/${base_libdir}/modules/5.15.91-yocto-standard/
-        install -m 0755 ${S}/faulty.ko ${D}/${base_libdir}/modules/5.15.91-yocto-standard/
+        install -m 0755 ${S}/hello.ko ${D}/${base_libdir}/modules/5.15.148-yocto-standard/
+        install -m 0755 ${S}/faulty.ko ${D}/${base_libdir}/modules/5.15.148-yocto-standard/
 }
